@@ -30,8 +30,8 @@ pipeline {
                     sh 'apt-get install -y python3 python3-venv python3-pip'
                     sh 'service docker start'
      
-                    sh 'python3 -m venv /venv'
-                    sh 'source /venv/bin/activate'
+                    sh 'python3 -m venv .venv'
+                    sh '. .venv/bin/activate'
                     sh 'pip install pytest selenium'
                     
 
