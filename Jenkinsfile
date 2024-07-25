@@ -23,6 +23,9 @@ pipeline {
                     sh 'apt-get update'
                     sh 'apt-get upgrade -y'
                     sh '''
+                        apt-get install -y docker.io
+                        systemctl start docker
+                        systemctl enable docker
                         docker compose version
                         docker compose up -d
                         '''
