@@ -11,13 +11,9 @@ pipeline {
                 script {
                     sh 'apt-get update'
                     sh 'apt-get upgrade -y'
+
                     sh '''
-                        DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
-                        mkdir -p $DOCKER_CONFIG/cli-plugins
-                        curl -SL https://github.com/docker/compose/releases/download/v2.29.1/docker-compose-linux-x86_64 -o $DOCKER_CONFIG/cli-plugins/docker-compose
-                        '''
-                    sh '''
-                        chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose
+                       
                         docker compose version
                         '''
                     
@@ -30,15 +26,7 @@ pipeline {
 
                     sh 'apt-get update'
                     sh 'apt-get upgrade -y'
-                    sh '''
-                        DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
-                        mkdir -p $DOCKER_CONFIG/cli-plugins
-                        curl -SL https://github.com/docker/compose/releases/download/v2.29.1/docker-compose-linux-x86_64 -o $DOCKER_CONFIG/cli-plugins/docker-compose
-                        '''
-                    sh '''
-                        chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose
-                        docker compose version
-                        '''
+
                     sh 'apt-get install -y python3 python3-venv python3-pip'
                     sh 'service docker start'
      
@@ -47,7 +35,7 @@ pipeline {
                     sh 'pip install pytest selenium'
                     
 
-                    sh 'docker-compose up -d'
+                    sh 'docker compose up -d'
                     
 
                     sleep 15
