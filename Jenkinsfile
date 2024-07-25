@@ -28,20 +28,15 @@ pipeline {
                     sh 'apt-get upgrade -y'
 
                     sh 'apt-get install -y python3 python3-venv python3-pip'
-                    sh 'service docker start'
      
-                    sh 'python3 -m venv .venv'
-                    sh '. .venv/bin/activate'
-                    sh 'pip install pytest selenium'
-                    
-
-                    sh 'docker compose up -d'
-                    
-
-                    sleep 15
-                    
-
-                    sh 'python test_devopstest.py'
+                    sh '''
+                        python3 -m venv .venv
+                        . .venv/bin/activate
+                        pip install pytest selenium
+                        docker compose up -d
+                        sleep 15
+                        python test_devopstest.py
+                        '''
                 }
             }
         }
