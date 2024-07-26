@@ -1,5 +1,6 @@
 pipeline {
     agent any
+    
     stages {
 
         stage('Build') {
@@ -23,7 +24,6 @@ pipeline {
                     sh 'apt-get update'
                     sh 'apt-get upgrade -y'
                     sh '''
-                        docker ps
                         docker compose version
                         docker compose up -d
                         '''
